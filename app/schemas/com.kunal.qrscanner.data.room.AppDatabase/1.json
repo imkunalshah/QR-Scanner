@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "aef4d73d99a8e92d43784b90c855ebb8",
+    "identityHash": "10f5f908005f8cb9d23d2ba826741f81",
     "entities": [
       {
         "tableName": "scan_history_item",
@@ -39,14 +39,24 @@
           ],
           "autoGenerate": true
         },
-        "indices": [],
+        "indices": [
+          {
+            "name": "index_scan_history_item_result",
+            "unique": true,
+            "columnNames": [
+              "result"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_scan_history_item_result` ON `${TABLE_NAME}` (`result`)"
+          }
+        ],
         "foreignKeys": []
       }
     ],
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'aef4d73d99a8e92d43784b90c855ebb8')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '10f5f908005f8cb9d23d2ba826741f81')"
     ]
   }
 }

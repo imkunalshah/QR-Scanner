@@ -13,4 +13,5 @@ object Constants {
     const val BITCOIN_REGEX = "^[13][a-km-zA-HJ-NP-Z1-9]{25,34}$"
     const val ETHEREUM_REGEX = "^0x[a-fA-F0-9]{40}$"
     const val COPIED_TO_CLIPBOARD = "Copied To Clipboard!"
+    const val PRESS_BACK_AGAIN_TO_EXIT = "Please click BACK again to exit"
 }

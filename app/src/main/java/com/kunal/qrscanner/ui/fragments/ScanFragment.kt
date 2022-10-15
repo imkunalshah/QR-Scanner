@@ -9,6 +9,7 @@ import com.kunal.qrscanner.ui.fragments.dialog.SymbolSelectionDialogFragment
 import com.kunal.qrscanner.ui.viewmodels.MainViewModel
 import com.kunal.qrscanner.utils.Constants
 import com.kunal.qrscanner.ui.base.BaseFragment
+import com.kunal.qrscanner.utils.giveHapticFeedback
 import com.kunal.qrscanner.utils.inVisible
 import com.kunal.qrscanner.utils.visible
 import dagger.hilt.android.AndroidEntryPoint
@@ -23,10 +24,13 @@ class ScanFragment : BaseFragment<FragmentScanBinding>(FragmentScanBinding::infl
 
     private var codeScanner: CodeScanner? = null
 
+    private var isSymbolSelectionDialogOpen = false
     private var isDetailsDialogOpen = false
 
     override fun initializeViews() {
-        mainViewModel.currentSelectedSymbol.postValue(Constants.BITCOIN)
+        if (mainViewModel.currentSelectedSymbol.value == null || mainViewModel.currentSelectedSymbol.value?.isBlank() == true || mainViewModel.currentSelectedSymbol.value?.isEmpty() == true) {
+            mainViewModel.currentSelectedSymbol.postValue(Constants.BITCOIN)
+        }
         codeScanner = CodeScanner(requireContext(), binding.scannerView)
         codeScanner?.apply {
             camera = CodeScanner.CAMERA_BACK
@@ -39,7 +43,7 @@ class ScanFragment : BaseFragment<FragmentScanBinding>(FragmentScanBinding::infl
                 codeScanner?.stopPreview()
                 isDetailsDialogOpen = true
                 Timber.d(result.text)
-                //haptic feedback here
+                context?.giveHapticFeedback()
                 val qRDetailsDialog =
                     QRDetailsBottomSheetDialogFragment.newInstance(
                         result.text,
@@ -65,10 +69,20 @@ class ScanFragment : BaseFragment<FragmentScanBinding>(FragmentScanBinding::infl
         }
         binding.apply {
             symbolSelectionButton.setOnClickListener {
+                codeScanner?.stopPreview()
+                context?.giveHapticFeedback()
+                isSymbolSelectionDialogOpen = true
                 val symbolSelectionDialogFragment = SymbolSelectionDialogFragment.newInstance()
                 symbolSelectionDialogFragment.also { dialog ->
                     dialog.onSymbolSelected = { symbol ->
                         mainViewModel.currentSelectedSymbol.postValue(symbol)
+                    }
+                    dialog.onDialogDismiss = {
+                        isSymbolSelectionDialogOpen = false
+                        lifecycleScope.launch {
+                            delay(1000L)
+                            codeScanner?.startPreview()
+                        }
                     }
                 }
                 symbolSelectionDialogFragment.show(
@@ -98,7 +112,7 @@ class ScanFragment : BaseFragment<FragmentScanBinding>(FragmentScanBinding::infl
     override fun onResume() {
         super.onResume()
         Timber.d("onResume")
-        if (!isDetailsDialogOpen) {
+        if (!isDetailsDialogOpen && !isSymbolSelectionDialogOpen) {
             codeScanner?.startPreview()
         }
     }

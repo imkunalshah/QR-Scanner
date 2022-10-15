@@ -58,17 +58,31 @@
                 android:id="@+id/symbolName"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginEnd="10dp"
                 android:gravity="center"
                 android:letterSpacing="0.18"
-                tools:text="Bitcoin (BTC)"
                 android:textAlignment="gravity"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/bitcoinSymbolImage"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Bitcoin (BTC)" />
+
+            <ImageView
+                android:id="@+id/dropdown_icon"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="6dp"
+                android:padding="8dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_arrow_drop_down"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/symbolName"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/white" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>

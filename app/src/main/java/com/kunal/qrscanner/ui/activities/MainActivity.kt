@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
@@ -13,9 +14,9 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.kunal.qrscanner.R
 import com.kunal.qrscanner.databinding.ActivityMainBinding
+import com.kunal.qrscanner.ui.base.BaseActivity
 import com.kunal.qrscanner.ui.viewmodels.MainViewModel
 import com.kunal.qrscanner.utils.Constants
-import com.kunal.qrscanner.ui.base.BaseActivity
 import com.kunal.qrscanner.utils.showLongToast
 import com.kunal.qrscanner.utils.showToast
 import dagger.hilt.android.AndroidEntryPoint
@@ -26,6 +27,8 @@ import kotlinx.coroutines.launch
 class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
 
     val mainViewModel: MainViewModel by viewModels()
+
+    var doubleBackToExitPressedOnce = false
 
     private val requestPermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestPermission()
@@ -59,6 +62,20 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
 
     override fun initializeViews() {
         requestCameraPermission()
+        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if (doubleBackToExitPressedOnce) {
+                    finish()
+                    return
+                }
+                doubleBackToExitPressedOnce = true
+                showToast(Constants.PRESS_BACK_AGAIN_TO_EXIT)
+                lifecycleScope.launch {
+                    delay(2000L)
+                    doubleBackToExitPressedOnce = false
+                }
+            }
+        })
     }
 
     private fun requestCameraPermission() {

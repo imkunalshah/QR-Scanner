@@ -45,5 +45,9 @@
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
     <string name="result">Result</string>
-    <string name="share">Share</string>
+    <string name="share">Share QR Code</string>
+    <string name="history_is_empty_nstart_scanning_to_view_history">History Not Found…\nStart Scanning To View History</string>
+    <string name="select_symbol">Select Symbol</string>
+    <string name="bitcoin_btc">Bitcoin (BTC)</string>
+    <string name="etherium_eth">Ethereum (ETH)</string>
 </resources>
