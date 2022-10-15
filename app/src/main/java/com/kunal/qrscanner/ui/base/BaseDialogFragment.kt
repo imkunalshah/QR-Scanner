@@ -11,6 +11,11 @@ import androidx.fragment.app.DialogFragment
 import androidx.viewbinding.ViewBinding
 import com.kunal.qrscanner.R
 
+/**
+ * This Is A Base Dialog Fragment
+ * All New Dialog Fragments Can
+ * Extend This Base Dialog Fragment Class
+ **/
 abstract class BaseDialogFragment<B : ViewBinding>(val bindingFactory: (LayoutInflater) -> B) :
     DialogFragment() {
 

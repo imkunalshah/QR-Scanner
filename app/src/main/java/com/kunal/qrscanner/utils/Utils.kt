@@ -13,6 +13,11 @@ import com.google.zxing.qrcode.QRCodeWriter
 import java.text.SimpleDateFormat
 import java.util.*
 
+/**
+ * This Is A Util Function
+ * For Creating A
+ * QR Code from given data
+ **/
 fun getQrCodeBitmap(data: String): Bitmap {
     val size = 512 //pixels
     val hints = hashMapOf<EncodeHintType, Int>().also {
@@ -28,22 +33,37 @@ fun getQrCodeBitmap(data: String): Bitmap {
     }
 }
 
+/**
+ * This Is A Util Function
+ * For Getting Formatted Date
+ * From Millis
+ **/
 fun getFormattedDate(millis: Long): String {
     val date = Date(millis)
     val formatter = SimpleDateFormat("dd MMM yyyy")
     return formatter.format(date)
 }
 
+/**
+ * This Is An Extension Function
+ * For Converting Dp
+ * Into Pixels (Used For Giving Padding Programmatically)
+ **/
 fun Context.pxFromDp(sizeInDp: Int): Int {
     val scale: Float = this.resources.displayMetrics.density
     return (sizeInDp * scale + 0.5f).toInt()
 }
 
+/**
+ * This Is An Extension Function
+ * For Giving A Haptic Feedback
+ * To The User On Events, clicks etc
+ **/
 fun Context.giveHapticFeedback() {
     val vibrator = this.getSystemService(VIBRATOR_SERVICE) as Vibrator
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-        vibrator.vibrate(VibrationEffect.createOneShot(100L, VibrationEffect.DEFAULT_AMPLITUDE))
+        vibrator.vibrate(VibrationEffect.createOneShot(80L, VibrationEffect.DEFAULT_AMPLITUDE))
     } else {
-        vibrator.vibrate(100L)
+        vibrator.vibrate(80L)
     }
 }

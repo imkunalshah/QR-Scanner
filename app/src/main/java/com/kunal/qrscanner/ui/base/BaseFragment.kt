@@ -7,6 +7,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
 
+/**
+ * This Is A Base Fragment
+ * All New Fragments Can
+ * Extend This Base Fragment Class
+ **/
 abstract class BaseFragment<B : ViewBinding>(val bindingFactory: (LayoutInflater) -> B) :
     Fragment() {
 

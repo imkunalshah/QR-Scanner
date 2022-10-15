@@ -1,7 +1,6 @@
 package com.kunal.qrscanner.di
 
 import android.content.Context
-import com.kunal.qrscanner.data.datastore.DatastoreManager
 import com.kunal.qrscanner.BaseApplication
 import com.kunal.qrscanner.data.room.AppDatabase
 import dagger.Module
@@ -19,12 +18,6 @@ object AppModule {
     @Provides
     fun provideApplication(@ApplicationContext context: Context): BaseApplication {
         return context as BaseApplication
-    }
-
-    @Singleton
-    @Provides
-    fun provideDatastoreManager(@ApplicationContext context: Context): DatastoreManager {
-        return DatastoreManager(context)
     }
 
     @Singleton

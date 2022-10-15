@@ -4,7 +4,6 @@ object Constants {
     const val SCANNED_DATA = "QR_CODE_DATA"
     const val CAMERA_PERMISSION_SUCCESS = "Camera Permission Granted Successfully"
     const val CAMERA_PERMISSION_FAILURE = "Camera Permission Is Required To Use This App"
-    const val MAIN_ACTIVITY = "MainActivity"
     const val QR_DETAILS_BOTTOM_SHEET_DIALOG_FRAGMENT = "QRDetailsBottomSheetDialogFragment"
     const val SYMBOL_SELECTION_DIALOG_FRAGMENT = "SymbolSelectionDialogFragment"
     const val BITCOIN = "Bitcoin (BTC)"

@@ -7,6 +7,7 @@ import android.os.Bundle
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.lifecycleScope
@@ -26,6 +27,11 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
 
+    /**
+     * This Is A Shared View Model
+     * Which Is Shared Across All
+     * The Fragments And The Containing Activity
+     **/
     val mainViewModel: MainViewModel by viewModels()
 
     var doubleBackToExitPressedOnce = false
@@ -40,7 +46,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
         } else {
             // PERMISSION NOT GRANTED
             showLongToast(Constants.CAMERA_PERMISSION_FAILURE)
-            requestCameraPermission()
+            lifecycleScope.launch {
+                delay(1500)
+                finish()
+            }
         }
     }
 
@@ -51,6 +60,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         var keepSplashOnScreen = true
         installSplashScreen().setKeepOnScreenCondition { keepSplashOnScreen }
         lifecycleScope.launch {

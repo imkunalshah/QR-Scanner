@@ -20,6 +20,11 @@ import timber.log.Timber
 @AndroidEntryPoint
 class ScanFragment : BaseFragment<FragmentScanBinding>(FragmentScanBinding::inflate) {
 
+    /**
+     * This Is A Shared View Model
+     * Which Is Shared Across All
+     * The Fragments And The Containing Activity
+     **/
     private val mainViewModel: MainViewModel by activityViewModels()
 
     private var codeScanner: CodeScanner? = null

@@ -7,6 +7,11 @@ import android.view.ViewGroup
 import androidx.viewbinding.ViewBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
+/**
+ * This Is A Base BottomSheet Dialog Fragment
+ * All New BottomSheet Dialog Fragments Can
+ * Extend This Base BottomSheet Dialog Fragment Class
+ **/
 abstract class BaseBottomSheetDialogFragment<B : ViewBinding>(val bindingFactory: (LayoutInflater) -> B) :
     BottomSheetDialogFragment() {
 
