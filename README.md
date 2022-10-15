@@ -50,13 +50,11 @@
 * [Code Scanner](https://github.com/yuriy-budiyev/code-scanner)
 * [Coroutines & Livedata](https://developer.android.com/kotlin/coroutines?gclid=CjwKCAiA24SPBhB0EiwAjBgkhsOpqTBp5eV6MKf0W_ifmCfNOWgGL_hCJh3m5A3w7JNhWeis5q8zjhoC2ogQAvD_BwE&gclsrc=aw.ds)
 * [Room Database](https://developer.android.com/training/data-storage/room)
+* [Navigation Component](https://developer.android.com/guide/navigation/navigation-getting-started)
 
 <!-- LICENSE -->
 ## License
-
 Distributed under the MIT License. See `LICENSE` for more information.
-
-
 
 <!-- CONTACT -->
 ## Contact
