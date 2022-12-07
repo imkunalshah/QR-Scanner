@@ -35,11 +35,6 @@
 * Dagger Hilt for dependency injection.
 * Android Splash Screen API 
 
-### APK
-* [Link](https://drive.google.com/file/d/1p9BJJxodLMlVVUR9ZhAGteok1zwB7dHi/view?usp=sharing)
-### Screenshots & Videos 
-* [G Drive Folder](https://drive.google.com/drive/folders/17lbPc39z6z2jiu0lGYGuTbk3-hD-QIM_?usp=sharing)
-
 ### Built With
 
 * Android Studio Dolphin | 2021.3.1
